@@ -1,0 +1,46 @@
+# Test Case: Testing SSH Connectivity using Password and Key Based Authentication
+
+## Scenario
+Test the SSH connectivity to a remote server using both password-based and key-based authentication methods.
+
+## Setup
+1. **Server Configuration:**
+   - Ensure the SSH server is running on the remote machine.
+   - The server should have a user account with password authentication enabled.
+   - The server should have SSH public key authentication enabled and the public key of the test client added to the `~/.ssh/authorized_keys` file.
+
+2. **Client Configuration:**
+   - Ensure the SSH client is installed.
+   - The client should have access to the private key corresponding to the public key on the server.
+   - The client should have the username and password for the server account.
+
+## Tools Used
+- `ssh` command for SSH connectivity.
+- `ssh-keygen` for generating SSH keys (if needed).
+- A script or automation tool (e.g., Python, Bash) to automate the test.
+
+## Test Steps
+1. **Password-Based Authentication:**
+   - Execute the SSH command using the username and password: `ssh user@remote-server`.
+   - Check if the connection is successful and the user can log in.
+   - Record the connection status and any error messages.
+
+2. **Key-Based Authentication:**
+   - Ensure the SSH agent is running and the private key is added: `ssh-add /path/to/private/key`.
+   - Execute the SSH command using the username and private key: `ssh -i /path/to/private/key user@remote-server`.
+   - Check if the connection is successful and the user can log in.
+   - Record the connection status and any error messages.
+
+## Teardown
+- Close the SSH sessions.
+- Remove any test files or configurations created during the test.
+
+## Pass/Fail Criteria
+- **Password-Based Authentication:**
+  - Pass: The user can successfully log in using the password.
+  - Fail: The user cannot log in using the password.
+
+- **Key-Based Authentication:**
+  - Pass: The user can successfully log in using the private key.
+  - Fail: The user cannot log in using the private key.
+
